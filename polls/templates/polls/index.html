@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Django Project</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/main.css' %}">
+</head>
+<body>
+
+    <h1>Class: Question, list</h1>
+    <p>Question.objects.all()</p>
+    <ul>
+        {% for question in question_text %}
+        <li>{{ question }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h1>Class: User / One to One model</h1>
+    <h3>Single User</h3>
+    <p>User.objects.get(<span style="color: #ff5722">name</span>=<span style="color: green">'Sam'</span>)</p>
+    <p>Nickname: {{ single_user }} / Login: {{single_user.account.login}} / Password: {{ single_user.account.password }}</p>
+    <h3>List Users</h3>
+    <p>User.objects.all()</p>
+    <div class="row">
+        {% for user in  users_list %}
+        <div class="card">
+            <p>Nickname: {{ user }}</p>
+            <p>Login: {{ user.account.login }}</p>
+            <p>Password: {{ user.account.password}}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <br>
+    <hr>
+
+    <h1>One to Many model</h1>
+    <h3>Class: Company / Product</h3>
+    <div class="row">
+        {% for company in companies_list %}
+        <div class="card">
+            <h3>{{ company }}</h3>
+            {% for product in company.product_set.all %}<p>{{ product }}</p>{% endfor %}
+        </div>
+        {% endfor%}
+    </div>
+    <br>
+    <h3>Class: Product / Company</h3>
+        <div class="row">
+            {% for product in products_list %}
+            <div class="card">
+                <h3>{{ product }}</h3>
+                <p>Vendor: {{ product.company.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    <br>
+    <hr>
+    
+    <h1>Many to Many model</h1>
+    <h3>Class: Student / Course</h3>
+    <div class="row">
+        {% for course in courses_students %}
+        <div class="card">
+            <h4 class="course_title">{{ course }}</h4>
+            {% for student in course.student_set.all %}<p>{{ student }}</p>{% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <h3>Class: Course / Student</h3>
+    <div class="row">
+        {% for student in students_courses %}
+        <div class="card">
+            <p style="color: orange;">{{ student }}</p>
+            {% for course in student.courses.all %}<p>{{ course }}</p>{% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'polls:form' %}">Form</a>
+    <a href="{% url 'posts:index' %}">Posts</a>
+
+</body>
+</html>

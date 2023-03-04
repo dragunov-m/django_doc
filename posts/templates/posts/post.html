@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'posts:index' %}">Назад</a>
+    <h1>Post</h1>
+    <p>{{ object.title }}</p>
+    <p>{{ object.author }}</p>
+    <p>{{ object.pub_date|date:"d/m/Y G:i" }}</p>
+    <p>{{ object.post }}</p>
+    <hr>
+    <h2>Comments</h2>
+    {% for comment in object.comments_set.all %}
+    <div class="comments" style="display: flex;">
+        <p style="margin-right: 10px;">{{ comment.pub_date|date:"d/m/Y G:i" }}</p>
+        <p>{{ comment.author }}</p>
+    </div>
+    <p>{{ comment }}</p>
+    {% empty %}
+    <p>Sorry, no comments</p>
+    {% endfor %}
+</body>
+</html>

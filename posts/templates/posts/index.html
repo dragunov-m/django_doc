@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'posts/main.css' %}">
+</head>
+<body>
+
+    <a href="{% url 'polls:index' %}">Polls</a>
+
+    <h1>Forum</h1>
+    <main>
+        <section>
+            {% for user in user_list %}
+            {% for post in user.posts_set.all %}
+            <div class="post">
+
+                <div class="title">
+                    <p>{{ post.title }}</p>
+                </div>
+
+                <div class="author">
+                    <p>Автор: {{ user }}</p>
+                </div>
+
+                <div class="time">
+                    <p>Опубликовано: {{ post.pub_date|date:"d/m/Y G:i" }}</p>
+                </div>
+
+                <div class="message">
+                    <p>{{ post.post|truncatechars:355 }}</p>
+                </div>
+
+                <div class="comments">
+                    <p>Кол-во комментариев: {{ post.comments_set.count }}</p>
+                </div>
+
+                <a href="{% url 'posts:post_id' %}?id={{ post.id }}">Читать далее</a>
+            </div>
+            {% empty %}
+                <p>Sorry, no articles have been written yet.</p>
+            {% endfor %}
+            {% endfor %}
+        </section>
+    </main>
+
+</body>
+</html>
