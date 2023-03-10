@@ -1,4 +1,4 @@
-#from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .models import *
@@ -15,14 +15,12 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def post_view(request, post_id=None):
-    #obj = get_object_or_404(Posts, pk=post_id)
+def post_view(request):
     post_id = request.GET.get('id')
-    post = Posts.objects.get(id=post_id)
-    comments = Comments.objects.filter(post=post)
+    post = get_object_or_404(Posts, id=post_id)
+    comments = Comments.objects.all()
     template = loader.get_template('posts/post.html')
     context = {
-        #'object': obj,
         'object': post,
         'comments': comments,
     }

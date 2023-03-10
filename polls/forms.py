@@ -1,7 +1,8 @@
-'''from django import forms
+from django import forms
+from .models import *
 
 
-class ProductForm(forms.Form):
-    product_name = forms.CharField()
-    price = forms.IntegerField()
-'''
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'

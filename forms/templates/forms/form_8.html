@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if form.errors %}
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                <li>{{ field.label }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+
+    <h3>Your text is</h3>
+    {% if text %}
+        {% if not text %}
+            <p>Text should have at least 3 characters</p>
+        {% else %}
+            <p>{{ text }}</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

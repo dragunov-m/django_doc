@@ -10,8 +10,7 @@
 <body>
     <a href="{% url 'polls:form' %}">Назад</a>
     <h2>Добавление товара</h2>
-    <form method="POST">
-        {% csrf_token %}
+    <form method="POST" action="{% url 'polls:create' %}">
         <p>
             <label>Введите название товара</label><br>
             <input type="text" name="name" required />

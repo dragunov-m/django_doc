@@ -1,7 +1,7 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.template import loader
-from .models import *
-#from .forms import ProductForm
+from .forms import *
 
 
 def index(request):
@@ -50,24 +50,26 @@ def form_get(request):
     return HttpResponse(template.render(context, request))
 
 
-def product_company(request):
-    create_companies()  # добавляем начальные данные для компаний
+def add_product(request):
 
-    # если запрос POST, сохраняем данные
-    if request.method == "POST":
-        product = Product()
-        product.name = request.POST.get("name")
-        product.price = request.POST.get("price")
-        product.company_id = request.POST.get("company")
-        product.save()
-        return HttpResponseRedirect("/polls/form")
-    # передаем данные в шаблон
+    create_companies()
+
+    if request.method == 'POST':
+        form_product = AddProductForm(request.POST)
+
+        if form_product.is_valid():
+            form_product.save()
+            return redirect('polls:form')
+    else:
+        form_product = AddProductForm(request.GET)
+
+        if form_product.is_valid():
+            form_product.save()
+            return redirect('polls:form')
+
     companies = Company.objects.all()
-    template = loader.get_template('polls/create.html')
-    context = {
-        'companies_list': companies
-    }
-    return HttpResponse(template.render(context, request))
+
+    return render(request, 'polls/create.html', {'form': form_product, 'companies_list': companies})
 
 
 def create_companies():
