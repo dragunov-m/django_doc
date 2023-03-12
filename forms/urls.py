@@ -4,9 +4,11 @@ from . import views
 
 app_name = 'forms'
 urlpatterns = [
-    path('form-1/', views.form_1, name='form_1'),
-    path('form-2/', views.form_2, name='form_2'),
-    path('form-3/', views.form_3, name='form_3'),
+    path('', views.index, name='index'),
+    path('objs/', views.objects_view, name='objs'),
+    path('form-1/', views.form_1, name='form-1'),
+    path('form-2/', views.form_2, name='form-2'),
+    path('form-3/', views.form_3, name='form-3'),
     path('form-4/', views.form_4, name='form-4'),
     path('form-5/', views.form_5, name='form-5'),
     path('form-6/', views.form_6, name='form-6'),

@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="{% url 'forms:index' %}">Back</a>
     <form method="POST">
         {% csrf_token %}
         {% for field in form %}
@@ -25,12 +26,6 @@
     </form>
 
     <hr>
-
-    <h3>Objects:</h3>
-    {% for i in obj %}
-        <p>{{ i }}</p>
-    {% endfor %}
-
 
 </body>
 </html>

@@ -9,17 +9,8 @@
 </head>
 <body>
     <a href="{% url 'forms:index' %}">Back</a>
-    <form method="POST">
-        {% csrf_token %}
-        {% if error %}
-        <p>{{ error }}</p>
-        {% endif %}
-        <label for="text">Place you text here:
-            <input type="text" name="text" minlength="1" maxlength="3" required>
-        </label>
-        <button type="submit">Submit</button>
-    </form>
-
-    <hr>
+    {% for i in obj %}
+        <p>{{ i }}</p>
+    {% endfor %}
 </body>
 </html>

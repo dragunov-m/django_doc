@@ -8,8 +8,12 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="{% url 'forms:index' %}">Back</a>
     <form method="GET">
         {% csrf_token %}
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
         {{ form }}
         {% if form.errors %}
             <ul>
@@ -23,9 +27,5 @@
         <button type="submit">Submit</button>
     </form>
     <hr>
-    <h3>Objects:</h3>
-    {% for i in obj %}
-    <p>{{ i }}</p>
-    {% endfor %}
 </body>
 </html>

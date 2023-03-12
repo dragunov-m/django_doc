@@ -10,3 +10,9 @@ class ModelForm(forms.ModelForm):
 
 class NotModelForm(forms.Form):
     text = forms.CharField(min_length=1, max_length=3, required=True)
+
+    def save(self):
+        text = self.cleaned_data.get('text')
+        model = Text(text=text)
+        model.save()
+        return model

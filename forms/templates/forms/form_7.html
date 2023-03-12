@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-
+    <a href="{% url 'forms:index' %}">Back</a>
     <form method="GET">
         {{ form }}
         <button type="submit">Submit</button>
@@ -25,9 +25,6 @@
     {% endfor %}
 
     <hr>
-
-    <h3>Your text is</h3>
-    <p>{{ text }}</p>
 
 </body>
 </html>

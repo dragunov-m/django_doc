@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="{% url 'forms:index' %}">Back</a>
     <form method="GET">
         {% csrf_token %}
         {% for field in form %}
@@ -25,14 +26,5 @@
     </form>
 
     <hr>
-
-    <h3>Your text is</h3>
-    {% if text %}
-        {% if not text %}
-            <p>Text should have at least 3 characters</p>
-        {% else %}
-            <p>{{ text }}</p>
-        {% endif %}
-    {% endif %}
 </body>
 </html>
