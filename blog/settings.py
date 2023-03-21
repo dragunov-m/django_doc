@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'object_editor.apps.ObjectEditorConfig',
     'forms.apps.FormsConfig',
     'posts.apps.PostsConfig',
     'polls.apps.PollsConfig',

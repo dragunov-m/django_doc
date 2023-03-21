@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .row p {
+            margin: 0 15px 0 0;
+        }
+        .a-first {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% for i in objs %}
+    <div class="row">
+        <p>{{ i.text }}</p>
+        <a href="{% url 'objs:obj-view' i.id %}" class="a-first">Изменить</a>
+        <a href="{% url 'objs:obj-delete' i.id %}">Удалить</a>
+    </div>
+    {% endfor %}
+</body>
+</html>

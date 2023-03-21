@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .button-delete {
+            padding: 10px 10px;
+            background-color: red;
+            color: white;
+            border-radius: 5px;
+            border: unset;
+        }
+        .button-back {
+            font-size: 13.3333px;
+            margin-left: 10px;
+            padding: 10px 10px;
+            background-color: #ccc;
+            text-decoration: none;
+            color: black;
+            border-radius: 5px;
+            border: unset;
+        }
+    </style>
+</head>
+<body>
+    {% load object_editor_extras %}
+    <div>
+        <p>Вы уверены что хотите удалить "{{ obj }}"? Все последующие за ним элементы будут удалены:</p>
+        <h3>Объект</h3>
+        <ul>
+            <li>{{ obj|class_name }}: {{ obj.text }}</li>
+        </ul>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input class="button-delete" type="submit" value="Да, я согласен">
+        <a class="button-back" href="{% url 'objs:index' %}">Нет, вернуться назад</a>
+    </form>
+</body>
+</html>

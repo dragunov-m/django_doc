@@ -12,7 +12,7 @@
             color: black;
         }
         .link {
-            width: 300px;
+            max-width: 300px;
             padding: 15px;
             transition: 0.5s all;
         }
@@ -31,30 +31,30 @@
             <p>Шаблонная форма POST</p>
         </div>
         <div class="link"><a href="{% url 'forms:form-3' %}">Form - 3</a>
-            <p>Модельная форма GET</p>
+            <p>Модельная форма GET, вывод через {form}</p>
         </div>
         <div class="link"><a href="{% url 'forms:form-4' %}">Form - 4</a>
-            <p>Модельная форма GET</p>
+            <p>Модельная форма GET, вывод полей циклом</p>
         </div>
         <div class="link"><a href="{% url 'forms:form-5' %}">Form - 5</a>
-            <p>Модельная форма POST</p>
+            <p>Модельная форма POST, {form}</p>
         </div>
         <div class="link"><a href="{% url 'forms:form-6' %}">Form - 6</a>
-            <p>Модельная форма POST</p>
+            <p>Модельная форма POST, циклом</p>
         </div>
         <div class="link"><a href="{% url 'forms:form-7' %}">Form - 7</a>
-            <p>Не модельная форма GET</p>
+            <p>Не модельная форма GET, {form}</p>
         </div>
         <div class="link"><a href="{% url 'forms:form-8' %}">Form - 8</a>
-            <p>Не модельная форма POST</p>
+            <p>Не модельная форма POST, {form}</p>
         </div>
         <div class="link"><a href="{% url 'forms:form-9' %}">Form - 9</a>
-            <p>Не модельная форма GET</p>
+            <p>Не модельная форма GET, циклом</p>
         </div>
         <div class="link"><a href="{% url 'forms:form-10' %}">Form - 10</a>
-            <p>Не модельная форма POST</p>
+            <p>Не модельная форма POST, циклом</p>
         </div>
     </div>
-    <a href="{% url 'forms:objs' %}">Objects</a>
+    <a href="{% url 'forms:objs' %}">Все объекты</a>
 </body>
 </html>

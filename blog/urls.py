@@ -5,5 +5,6 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('posts/', include('posts.urls')),
     path('forms/', include('forms.urls')),
+    path('objs/', include('object_editor.urls')),
     path('admin/', admin.site.urls),
 ]
