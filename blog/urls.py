@@ -6,5 +6,6 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     path('forms/', include('forms.urls')),
     path('objs/', include('object_editor.urls')),
+    path('auth/', include('auth_task.urls')),
     path('admin/', admin.site.urls),
 ]

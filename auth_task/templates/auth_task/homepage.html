@@ -1,0 +1,13 @@
+{% extends 'auth_task/base.html' %}
+{% block title %}Homepage{% endblock %}
+{% block content %}
+    <h3>Home Page</h3>
+    {% if user.is_authenticated %}
+        <p>Hi {{ user.username }}!</p>
+        <a href="{% url 'auth_task:logout' %}">Log out</a>
+        {% else %}
+            <p>You are not logged in</p>
+            <a href="{% url 'auth_task:login' %}">Log in</a>
+            <a href="{% url 'auth_task:registration' %}">Sign in</a>
+    {% endif %}
+{% endblock %}

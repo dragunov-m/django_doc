@@ -1,0 +1,19 @@
+{% extends 'auth_task/base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <h3>Login Page</h3>
+    <form action="" method="POST">
+    {% csrf_token %}
+        <label>
+            Username:
+            <input type="text" name="username">
+        </label>
+        <label for="">
+            Password:
+            <input type="password" name="password">
+        </label>
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
